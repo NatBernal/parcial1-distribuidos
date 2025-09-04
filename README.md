@@ -32,7 +32,12 @@ docker run -d --name prueba  -p 2500:2500 alpine-image
 docker exec -it prueba sh -lc 'echo "note test" > notas.txt' #Crearía en el contenedor el archivo notas.txt
 docker exec -it prueba sh -c 'pwd' # Mostraria el directorio actual
 docker exec -it prueba sh -c 'ls -la' # Mostraria la lista de archivos del directorio actual
+docker stop prueba && docker rm prueba #para y elimina el contenedor
+docker run -d --name prueba2  -p 2500:2500 alpine-image #crea otro contenedor con la misma imagen
+docker exec -it prueba sh -c 'ls -la' # Mostraria la lista de archivos del directorio actual del nuevo contenedor
 ```
+
+En este caso lo que debería ocurrir es que notas.txt no aparezca en el nuevo contenedor pues no se peristió con un volumen y los cambios que se hicieron durante su ejecución se borraron cuando se detuvo y eliminó el primer contenedor
 
 ## Punto 5
 
